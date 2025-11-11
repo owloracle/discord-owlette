@@ -6,6 +6,9 @@ module.exports = {
 		.setDescription('Reloads a command.')
 		.addStringOption((option) => option.setName('command').setDescription('The command to reload.').setRequired(true)),
 	async execute(interaction) {
+		if (interaction.user.id !== '366946697882107914') {
+			return interaction.reply('You do not have permission to use this command.');
+		}
 		const commandName = interaction.options.getString('command', true).toLowerCase();
 		const command = interaction.client.commands.get(commandName);
 		if (!command) {
