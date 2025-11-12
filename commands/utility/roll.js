@@ -5,8 +5,9 @@ module.exports = {
 		.setName('roll')
 		.setDescription('Rolls a dice in NdN format (e.g., 2d6 rolls two six-sided dice).')
 		.addStringOption((option) =>
-			option.setName('dice').setDescription('The dice to roll in NdN format').setRequired(true),
+			option.setName('dice').setDescription('The dice to roll in NdN format').setRequired(true)
 		),
+
 	async execute(interaction) {
 		const dice = interaction.options.getString('dice');
 		const dicePattern = /^(\d+)d(\d+)$/;
@@ -28,6 +29,6 @@ module.exports = {
 		}
 		
 		const total = rolls.reduce((a, b) => a + b, 0);
-		await interaction.reply(`You rolled: ${rolls.join(', ')} (Total: ${total})`);
+		await interaction.reply(`${interaction.user} rolled: ${rolls.join(', ')} (Total: ${total})`);
 	},
 };
